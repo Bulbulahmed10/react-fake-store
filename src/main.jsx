@@ -5,9 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Products from "./Components/Products/Products";
-import Blogs from "./Components/Blogs/Blogs";
 import Contact from "./Components/Contact/Contact";
 import ProductInfo from "./Components/ProductInfo/ProductInfo";
+import ErrorRoute from "./Components/ErrorRoute/ErrorRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,13 +29,14 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://dummyjson.com/products/${params.id}`),
       },
-      {
-        path: "blogs",
-        element: <Blogs />,
-      },
+
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "*",
+        element: <ErrorRoute />,
       },
     ],
   },

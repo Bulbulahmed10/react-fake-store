@@ -10,7 +10,6 @@ const Header = () => {
       </h2>
       <nav className="flex gap-8">
         <ActiveLink to="/products">Products</ActiveLink>
-        <ActiveLink to="/blogs">Blogs</ActiveLink>
         <ActiveLink to="/contact">Contact us</ActiveLink>
       </nav>
       <img

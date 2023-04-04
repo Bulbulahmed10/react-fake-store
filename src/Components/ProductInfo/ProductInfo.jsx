@@ -1,19 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStarHalfStroke, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const ProductInfo = () => {
-  const {
-    brand,
-    category,
-    description,
-    images,
-    price,
-    rating,
-    stock,
-    title,
-  } = useLoaderData();
+  const { brand, category, description, images, price, rating, stock, title } =
+    useLoaderData();
 
   function ratingGenerator(rating) {
     const roundedRating = Math.round(rating * 100) / 100; // Round to 2 decimal places
@@ -68,7 +60,12 @@ const ProductInfo = () => {
         <p className="text-lg bg-red-100 p-2 ml-1 rounded-md w-fit font-bold text-red-600 ">
           ${price}
         </p>
-        <button className="btn btn-info mt-4 w-[50%] m-auto">Buy Now</button>
+        <div className="flex gap-4">
+          <Link to="/products" className="btn btn-success mt-4 w-[50%] m-auto">
+            Go Back
+          </Link>
+          <button className="btn btn-info mt-4 w-[50%] m-auto">Buy Now</button>
+        </div>
       </div>
     </div>
   );

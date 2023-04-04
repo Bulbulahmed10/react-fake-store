@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Product = ({ id, title, description, price, thumbnail }) => {
   return (
     <div className="card card-side bg-base-100 shadow-xl">
-      <figure className="w-[500px]">
+      <figure className="w-ful">
         <img
           className="h-[200px] w-full object-contain"
           src={thumbnail}
@@ -18,10 +18,12 @@ const Product = ({ id, title, description, price, thumbnail }) => {
           {" "}
           ${price}{" "}
         </span>
-        <div className="card-actions justify-end">
-          <Link to={`/product/${id}`} className="btn btn-success">
-            Product Info
-          </Link>
+        <div className="flex gap-4 mt-2">
+          <button>
+            <Link to={`/product/${id}`} className="btn btn-success">
+              Product Info
+            </Link>
+          </button>
 
           <button className="btn btn-primary">Buy Now</button>
         </div>
