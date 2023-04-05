@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
-import { deleteCartFromLocalStorage, getShoppingCart } from "../../utilities/localStorage";
+import {
+  deleteCartFromLocalStorage,
+} from "../../utilities/localStorage";
 
 const Cart = () => {
   const storedCart = useLoaderData();
   const [cart, setCart] = useState(storedCart);
 
   const deleteCart = (id) => {
-      const remainingCart = cart.filter(singleCart => singleCart.id !== id)
-      setCart(remainingCart)
-     deleteCartFromLocalStorage(id);
+    const remainingCart = cart.filter((singleCart) => singleCart.id !== id);
+    setCart(remainingCart);
+    deleteCartFromLocalStorage(id);
   };
+
+  let totalPrice = 0;
+  for (let item of cart) {
+    totalPrice += item.price;
+  }
+  const tax = parseFloat(Math.abs((totalPrice * 7) / 100).toFixed(2))
+  const shippingCharge = parseFloat(Math.abs((totalPrice * 5) / 100).toFixed(2))
+  const grandTotal = totalPrice + tax + shippingCharge
 
   return (
     <div className="flex w-full max-w-[1440px] m-auto mt-4 gap-8">
@@ -30,7 +40,20 @@ const Cart = () => {
           </h4>
         )}
       </div>
-      <div>dfdf</div>
+      <div>
+        <p>
+          Total Price: <span> ${totalPrice} </span>{" "}
+        </p>
+        <p>
+          Tax: <span> ${tax} </span>{" "}
+        </p>
+        <p>
+          Shipping Charge: <span> ${shippingCharge} </span>
+        </p>
+        <p>
+          Grand Total: <span> {grandTotal.toFixed(2)} </span>
+        </p>
+      </div>
     </div>
   );
 };
