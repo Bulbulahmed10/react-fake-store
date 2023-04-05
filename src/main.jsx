@@ -8,6 +8,8 @@ import Products from "./Components/Products/Products";
 import Contact from "./Components/Contact/Contact";
 import ProductInfo from "./Components/ProductInfo/ProductInfo";
 import ErrorRoute from "./Components/ErrorRoute/ErrorRoute";
+import Cart from "./Components/Cart/Cart";
+import cartProductLoader from "./utilities/cartProductLoader";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
         element: <ProductInfo />,
         loader: ({ params }) =>
           fetch(`https://dummyjson.com/products/${params.id}`),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+        loader: cartProductLoader
       },
 
       {

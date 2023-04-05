@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { addToCart } from "../../utilities/localStorage";
 const Product = ({ id, title, description, price, thumbnail }) => {
   return (
     <div className="card card-side bg-base-100 shadow-xl">
-      <figure className="w-ful">
+      <figure className="w-full">
         <img
           className="h-[200px] w-full object-contain"
           src={thumbnail}
@@ -25,7 +25,7 @@ const Product = ({ id, title, description, price, thumbnail }) => {
             </Link>
           </button>
 
-          <button className="btn btn-primary">Buy Now</button>
+          <button onClick={() => addToCart(id)} className="btn btn-primary">Buy Now</button>
         </div>
       </div>
     </div>

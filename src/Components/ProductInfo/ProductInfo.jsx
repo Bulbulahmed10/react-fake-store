@@ -2,9 +2,10 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStarHalfStroke, faStar } from "@fortawesome/free-solid-svg-icons";
+import { addToCart } from "../../utilities/localStorage";
 
 const ProductInfo = () => {
-  const { brand, category, description, images, price, rating, stock, title } =
+  const { brand, category, description, images, price, rating, stock, title, id } =
     useLoaderData();
 
   function ratingGenerator(rating) {
@@ -64,7 +65,7 @@ const ProductInfo = () => {
           <Link to="/products" className="btn btn-success mt-4 w-[50%] m-auto">
             Go Back
           </Link>
-          <button className="btn btn-info mt-4 w-[50%] m-auto">Buy Now</button>
+          <button onClick={() => addToCart(id)} className="btn btn-info mt-4 w-[50%] m-auto">Buy Now</button>
         </div>
       </div>
     </div>
