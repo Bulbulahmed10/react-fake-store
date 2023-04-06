@@ -4,26 +4,24 @@ import add from "../.././assets/add.png";
 import minus from "../.././assets/minus.png";
 import { getShoppingCart } from "../../utilities/localStorage";
 
-const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart, incrementQuantity, decrementQuantity, totalQuantity }) => {
-  // const [totalQuantity, setTotalQuantity] = useState(quantity);
-  console.log(price, quantity);
-  // const incrementQuantity = (id) => {
-  //   setTotalQuantity(totalQuantity + 1);
-  //   const storedCart = getShoppingCart();
-  //   let itemIndex = storedCart.findIndex((item) => item.id === id);
-  //   storedCart[itemIndex].quantity += 1;
-  //   localStorage.setItem("cart", JSON.stringify(storedCart));
+const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
+  const [totalQuantity, setTotalQuantity] = useState(quantity);
 
-  // };
+  const incrementQuantity = (id) => {
+    setTotalQuantity(totalQuantity + 1);
+    const storedCart = getShoppingCart();
+    let itemIndex = storedCart.findIndex((item) => item.id === id);
+    storedCart[itemIndex].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+  };
 
-  // const decrementQuantity = (id) => {
-  //   setTotalQuantity(totalQuantity - 1);
-  //   const storedCart = getShoppingCart();
-  //   let itemIndex = storedCart.findIndex((item) => item.id === id);
-  //   storedCart[itemIndex].quantity -= 1;
-  //   localStorage.setItem("cart", JSON.stringify(storedCart));
-
-  // };
+  const decrementQuantity = (id) => {
+    setTotalQuantity(totalQuantity - 1);
+    const storedCart = getShoppingCart();
+    let itemIndex = storedCart.findIndex((item) => item.id === id);
+    storedCart[itemIndex].quantity -= 1;
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+  };
 
   return (
     <div className="flex justify-between border-2 items-center mb-3 p-1 rounded-md">
@@ -41,13 +39,13 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart, increment
           </p>
           <p>
             Quantity:{" "}
-            <span className="text-yellow-600 font-bold"> {quantity} </span>
+            <span className="text-yellow-600 font-bold"> {totalQuantity} </span>
           </p>
           <p>
             Total Price:{" "}
             <span className="text-yellow-600 font-bold">
               {" "}
-              ${price * quantity}{" "}
+              ${price * totalQuantity}{" "}
             </span>
           </p>
         </div>
