@@ -10,7 +10,7 @@ const App = () => {
     <>
     <div>
       <Header />
-      <div className="text-center">
+      <div className="text-center mt-20">
         {navigation.state === "loading" && (
           <progress className="progress w-56"></progress>
         )}

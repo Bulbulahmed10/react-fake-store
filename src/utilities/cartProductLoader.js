@@ -7,8 +7,9 @@ const cartProductLoader = async () => {
 
     let storedProductArr = []
     for(const id of storedCart) {
+      
       const addedProduct = products.products.find(pd => pd.id === id.id)
-      storedProductArr.push(addedProduct)
+      storedProductArr.push({...addedProduct, quantity: id.quantity})
     }
     return storedProductArr
 }
