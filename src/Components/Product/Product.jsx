@@ -20,7 +20,7 @@ const Product = ({ id, title, description, price, thumbnail }) => {
         </span>
         <div className="flex gap-4 mt-2">
           <button>
-            <Link to={`/product/${id}`} className="btn btn-success">
+            <Link to={`/product/${id}`} state={title} className="btn btn-success">
               Product Info
             </Link>
           </button>

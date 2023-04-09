@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 import { deleteCartFromLocalStorage } from "../../utilities/localStorage";
 
@@ -11,6 +11,11 @@ const Cart = () => {
     const remainingCart = cart.filter((singleCart) => singleCart.id !== id);
     setCart(remainingCart);
     deleteCartFromLocalStorage(id);
+  };
+
+  const clearAllCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
   };
 
   let totalPrice = 0;
@@ -25,7 +30,7 @@ const Cart = () => {
 
   return (
     <div className="flex w-full max-w-[1440px] h-[calc(100vh-80px)] m-auto mt-8 gap-8">
-      <div className="w-full max-w-[50%] overflow-y-auto px-4" >
+      <div className="w-full max-w-[50%] overflow-y-auto px-4">
         {cart.length > 0 ? (
           cart.map((singleCart) => (
             <CartItem
@@ -40,28 +45,45 @@ const Cart = () => {
           </h4>
         )}
       </div>
-      <div className="flex justify-between w-full px-4 ">
-        <div className="flex flex-col gap-4">
-          <p className="text-3xl ">Total Price: </p>
-          <p className="text-3xl ">Tax: </p>
-          <p className="text-3xl ">Shipping Charge: </p>
-          <hr className="border-2 border-yellow-700" />
-          <p className="text-3xl  ">Grand Total: </p>
+      <div className="px-4 w-full">
+        <div className="flex justify-between  ">
+          <div className="flex flex-col gap-4">
+            <p className="text-3xl ">Total Price: </p>
+            <p className="text-3xl ">Tax: </p>
+            <p className="text-3xl ">Shipping Charge: </p>
+            <hr className="border-2 border-yellow-700" />
+            <p className="text-3xl  ">Grand Total: </p>
+          </div>
+          <div className="flex flex-col gap-4 text-end">
+            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+              ${totalPrice.toFixed(2)}
+            </span>
+            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+              ${tax}
+            </span>
+            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+              ${shippingCharge}
+            </span>
+            <hr className="border-2 border-yellow-700" />
+            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+              ${grandTotal.toFixed(2)}
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-end">
-          <span className="font-extrabold font-mono text-3xl text-yellow-500">
-            ${totalPrice.toFixed(2)}
-          </span>
-          <span className="font-extrabold font-mono text-3xl text-yellow-500">
-            ${tax}
-          </span>
-          <span className="font-extrabold font-mono text-3xl text-yellow-500">
-            ${shippingCharge}
-          </span>
-          <hr className="border-2 border-yellow-700" />
-          <span className="font-extrabold font-mono text-3xl text-yellow-500">
-            ${grandTotal.toFixed(2)}
-          </span>
+        <div className="mt-8 ">
+          {cart.length < 1 ? (
+            <Link to="/products">
+              <button className="btn btn-warning mr-6">buy product</button>
+            </Link>
+          ) : (
+            <button onClick={clearAllCart} className="btn btn-warning mr-6">
+              clear cart
+            </button>
+          )}
+
+          {cart.length > 0 && (
+            <button className="btn btn-accent">Proceed to checkout</button>
+          )}
         </div>
       </div>
     </div>
