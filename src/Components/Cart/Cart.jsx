@@ -29,8 +29,8 @@ const Cart = () => {
   const grandTotal = totalPrice + tax + shippingCharge;
 
   return (
-    <div className="flex w-full max-w-[1440px] h-[calc(100vh-80px)] m-auto mt-8 gap-8">
-      <div className="w-full max-w-[50%] overflow-y-auto px-4">
+    <div className="flex flex-col md:flex-row w-full max-w-[1440px] h-full md:h-[calc(100vh-80px)] xl:m-auto mt-8 lg:gap-8 ">
+      <div className="w-full md:max-w-[50%] h-auto overflow-y-auto md:overflow-y-auto lg:px-4 md:px-2">
         {cart.length > 0 ? (
           cart.map((singleCart) => (
             <CartItem
@@ -45,27 +45,27 @@ const Cart = () => {
           </h4>
         )}
       </div>
-      <div className="px-4 w-full">
+      <div className="my-4 px-4 w-full">
         <div className="flex justify-between  ">
           <div className="flex flex-col gap-4">
-            <p className="text-3xl ">Total Price: </p>
-            <p className="text-3xl ">Tax: </p>
-            <p className="text-3xl ">Shipping Charge: </p>
+            <p className="text-2xl lg:text-3xl ">Total Price: </p>
+            <p className="text-2xl lg:text-3xl ">Tax: </p>
+            <p className="text-2xl lg:text-3xl ">Shipping Charge: </p>
             <hr className="border-2 border-yellow-700" />
-            <p className="text-3xl  ">Grand Total: </p>
+            <p className="text-2xl lg:text-3xl  ">Grand Total: </p>
           </div>
           <div className="flex flex-col gap-4 text-end">
-            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+            <span className="font-extrabold font-mono text-2xl lg:text-3xl text-yellow-500">
               ${totalPrice.toFixed(2)}
             </span>
-            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+            <span className="font-extrabold font-mono text-2xl lg:text-3xl text-yellow-500">
               ${tax}
             </span>
-            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+            <span className="font-extrabold font-mono text-2xl lg:text-3xl text-yellow-500">
               ${shippingCharge}
             </span>
             <hr className="border-2 border-yellow-700" />
-            <span className="font-extrabold font-mono text-3xl text-yellow-500">
+            <span className="font-extrabold font-mono text-2xl lg:text-3xl text-yellow-500">
               ${grandTotal.toFixed(2)}
             </span>
           </div>
@@ -76,7 +76,9 @@ const Cart = () => {
               <button className="btn btn-warning mr-6">buy product</button>
             </Link>
           ) : (
-            <button onClick={clearAllCart} className="btn btn-warning mr-6">
+            <button
+              onClick={clearAllCart}
+              className="btn btn-warning mr-3 md:mr-6">
               clear cart
             </button>
           )}

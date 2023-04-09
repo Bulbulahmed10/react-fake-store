@@ -54,14 +54,18 @@ const ProductInfo = () => {
   }
 
   return (
-    <div className="w-full max-w-[1440px] m-auto flex gap-6 mt-8">
-      <div className="grid grid-cols-2 w-[45%] gap-2">
+    <div className="w-full max-w-[1440px] xl:m-auto mx-4 flex flex-col-reverse md:flex md:flex-row gap-6 mt-8">
+      <div className="grid grid-cols-2 w-[95%] md:w-[45%] gap-2">
         {images &&
           images.map((image, index) => (
-            <img key={index} className="w-[320px] h-[200px]" src={image} />
+            <img
+              key={index}
+              className="w-[320px] h-[200px] object-contain"
+              src={image}
+            />
           ))}
       </div>
-      <div className="w-[50%] flex flex-col gap-2">
+      <div className="w-[95%]  md:w-[50%] flex flex-col gap-2">
         <h2 className="text-3xl font-semibold "> {title} </h2>
         <p className="mt-2"> {description} </p>
         <p className="my-2 text-sm font-bold">
@@ -86,12 +90,12 @@ const ProductInfo = () => {
           ${price}
         </p>
         <div className="flex gap-4">
-          <Link to="/products" className="btn btn-success mt-4 w-[50%] m-auto">
+          <Link to="/products" className="btn btn-success mt-4  w-[45%] m-auto">
             Go Back
           </Link>
           <button
             onClick={() => handleAddToCart(product)}
-            className="btn btn-info mt-4 w-[50%] m-auto">
+            className="btn btn-info mt-4 w-[45%] m-auto">
             Buy Now
           </button>
         </div>

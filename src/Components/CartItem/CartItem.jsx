@@ -34,7 +34,7 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
   };
 
   return (
-    <div className="flex justify-between border-2 items-center mb-3 p-1 rounded-md">
+    <div className="flex flex-col md:flex-row md:justify-between border-2 md:items-center mb-3 p-1 rounded-md mx-4">
       <div className="flex gap-2">
         <img
           className="w-24 h-auto object-cover rounded-sm"
@@ -42,7 +42,7 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
           alt={title}
         />
         <div className="flex flex-col gap-1">
-          <h2 className="text-xl font-semibold">{title} </h2>
+          <h2 className=" lg:text-xl font-semibold">{title} </h2>
           <p>
             Price:{" "}
             <span className="text-yellow-600 font-bold "> ${price} </span>{" "}
@@ -60,7 +60,7 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
           </p>
         </div>
       </div>
-      <div className="flex gap-14">
+      <div className="flex flex-row my-2 justify-around md:my-0 md:flex gap-14">
         <div className="flex gap-6 items-center ">
           {totalQuantity > 1 && (
             <img

@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 const Product = ({ product, handleAddToCart }) => {
   const { id, title, description, price, thumbnail } = product;
   return (
-    <div className="card card-side bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-xl ">
       <figure className="w-full">
         <img
-          className="h-[200px] w-full object-contain"
+          className="h-[250px] w-full object-center"
           src={thumbnail}
           alt={title}
         />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-4">
         <h2 className="card-title">{title}</h2>
-        <p>{description}</p>
+        <p>{ description.length > 75 ? description.slice(0, 75) + " ..." : description } </p>
         <span className="text-lg font-semibold bg-yellow-400 w-fit p-2 rounded-lg">
           {" "}
           ${price}{" "}
