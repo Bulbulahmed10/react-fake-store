@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const addToCart = (id) => {
+const addToDB = (id) => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let existingProduct = cart.find((product) => product.id === id);
 
@@ -32,4 +32,4 @@ const deleteCartFromLocalStorage = (id) => {
   localStorage.setItem("cart", JSON.stringify(remainingCart));
 };
 
-export { addToCart, getShoppingCart, deleteCartFromLocalStorage };
+export { addToDB, getShoppingCart, deleteCartFromLocalStorage };

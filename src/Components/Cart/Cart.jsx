@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 import { deleteCartFromLocalStorage } from "../../utilities/localStorage";
+import { CartContext } from "../../App";
 
 const Cart = () => {
-  const storedCart = useLoaderData();
-  const [cart, setCart] = useState(storedCart);
+  const [cart, setCart] = useContext(CartContext);
 
   const deleteCart = (id) => {
     const remainingCart = cart.filter((singleCart) => singleCart.id !== id);

@@ -9,12 +9,15 @@ import Contact from "./Components/Contact/Contact";
 import ProductInfo from "./Components/ProductInfo/ProductInfo";
 import ErrorRoute from "./Components/ErrorRoute/ErrorRoute";
 import Cart from "./Components/Cart/Cart";
-import cartProductLoader from "./utilities/cartProductLoader";
+import productsAndCartLoader from "./utilities/productAndCartLoader";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorRoute />,
+    loader: productsAndCartLoader,
     children: [
       {
         path: "/",
@@ -23,7 +26,6 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
-        loader: () => fetch("https://dummyjson.com/products"),
       },
       {
         path: "product/:id",
@@ -34,21 +36,19 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
-        loader: cartProductLoader
       },
 
       {
         path: "contact",
         element: <Contact />,
       },
-      {
-        path: "*",
-        element: <ErrorRoute />,
-      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <>
+    <RouterProvider router={router} />
+    <ToastContainer />
+  </>
 );

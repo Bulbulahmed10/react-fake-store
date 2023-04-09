@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../utilities/localStorage";
-const Product = ({ id, title, description, price, thumbnail }) => {
+
+const Product = ({ product, handleAddToCart }) => {
+  const { id, title, description, price, thumbnail } = product;
   return (
     <div className="card card-side bg-base-100 shadow-xl">
       <figure className="w-full">
@@ -20,12 +21,19 @@ const Product = ({ id, title, description, price, thumbnail }) => {
         </span>
         <div className="flex gap-4 mt-2">
           <button>
-            <Link to={`/product/${id}`} state={title} className="btn btn-success">
+            <Link
+              to={`/product/${id}`}
+              state={title}
+              className="btn btn-success">
               Product Info
             </Link>
           </button>
 
-          <button onClick={() => addToCart(id)} className="btn btn-primary">Buy Now</button>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="btn btn-primary">
+            Buy Now
+          </button>
         </div>
       </div>
     </div>
