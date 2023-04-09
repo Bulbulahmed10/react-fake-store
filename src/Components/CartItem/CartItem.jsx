@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import add from "../.././assets/add.png";
 import minus from "../.././assets/minus.png";
 import { getShoppingCart } from "../../utilities/localStorage";
+import { CartContext } from "../../App";
 
 const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
   const [totalQuantity, setTotalQuantity] = useState(quantity);
+  const [cart, setCart] = useContext(CartContext);
 
   const incrementQuantity = (id) => {
     setTotalQuantity(totalQuantity + 1);
@@ -13,6 +15,10 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
     let itemIndex = storedCart.findIndex((item) => item.id === id);
     storedCart[itemIndex].quantity += 1;
     localStorage.setItem("cart", JSON.stringify(storedCart));
+    const newCart = [...cart];
+    const cartIndex = newCart.findIndex((singleCart) => singleCart.id === id);
+    newCart[cartIndex].quantity += 1;
+    setCart(newCart);
   };
 
   const decrementQuantity = (id) => {
@@ -21,6 +27,10 @@ const CartItem = ({ id, title, thumbnail, price, quantity, deleteCart }) => {
     let itemIndex = storedCart.findIndex((item) => item.id === id);
     storedCart[itemIndex].quantity -= 1;
     localStorage.setItem("cart", JSON.stringify(storedCart));
+    const newCart = [...cart];
+    const cartIndex = newCart.findIndex((singleCart) => singleCart.id === id);
+    newCart[cartIndex].quantity -= 1;
+    setCart(newCart);
   };
 
   return (
