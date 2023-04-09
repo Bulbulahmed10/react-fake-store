@@ -6,7 +6,7 @@ import { deleteCartFromLocalStorage } from "../../utilities/localStorage";
 const Cart = () => {
   const storedCart = useLoaderData();
   const [cart, setCart] = useState(storedCart);
-  
+
   const deleteCart = (id) => {
     const remainingCart = cart.filter((singleCart) => singleCart.id !== id);
     setCart(remainingCart);
@@ -24,8 +24,8 @@ const Cart = () => {
   const grandTotal = totalPrice + tax + shippingCharge;
 
   return (
-    <div className="flex w-full max-w-[1440px] m-auto mt-8 gap-8">
-      <div className="w-full max-w-[50%] h-[600px] overflow-y-scroll px-4">
+    <div className="flex w-full max-w-[1440px] h-[calc(100vh-80px)] m-auto mt-8 gap-8">
+      <div className="w-full max-w-[50%] overflow-y-auto px-4" >
         {cart.length > 0 ? (
           cart.map((singleCart) => (
             <CartItem
